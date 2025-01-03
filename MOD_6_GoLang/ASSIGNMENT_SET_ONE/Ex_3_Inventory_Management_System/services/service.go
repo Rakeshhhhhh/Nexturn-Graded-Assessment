@@ -10,6 +10,7 @@ import (
 
 var inventory []models.Product
 
+// Adding Product
 func AddProduct(name string, priceInput string, stock int) error {
 	price, err := strconv.ParseFloat(priceInput, 64)
 	if err != nil {
@@ -29,9 +30,10 @@ func AddProduct(name string, priceInput string, stock int) error {
 	return nil
 }
 
+// Update Stock
 func UpdateStock(productID int, newStock int) error {
 	if newStock < 0 {
-		return errors.New("stock cannot be negative")
+		return errors.New("stock can't be negative")
 	}
 
 	for i := range inventory {
@@ -43,6 +45,7 @@ func UpdateStock(productID int, newStock int) error {
 	return errors.New("product not found")
 }
 
+// Search Product by ID or Name
 func SearchProduct(identifier string) (*models.Product, error) {
 	id, err := strconv.Atoi(identifier)
 	if err == nil {
@@ -63,6 +66,7 @@ func SearchProduct(identifier string) (*models.Product, error) {
 	return nil, errors.New("product not found")
 }
 
+// returns a list of products
 func DisplayInventory() {
 	fmt.Println("ID\tName\t\tPrice\t\tStock")
 	fmt.Println("----------------------------------------")
@@ -71,6 +75,7 @@ func DisplayInventory() {
 	}
 }
 
+// Sort by Price
 func SortByPrice() []models.Product {
 	tempProducts := make([]models.Product, len(inventory))
 	copy(tempProducts, inventory)
@@ -83,7 +88,7 @@ func SortByPrice() []models.Product {
 	return tempProducts
 }
 
-// Sort by Stock (without modifying the original slice)
+// Sort by Stock
 func SortByStock() []models.Product {
 	// Create a copy of the original slice
 	tempProducts := make([]models.Product, len(inventory))
