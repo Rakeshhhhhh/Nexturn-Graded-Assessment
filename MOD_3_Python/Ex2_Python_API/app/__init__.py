@@ -1,8 +1,6 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from .extensions import db  # Import db from extensions
 from .routes import main_routes
-
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
@@ -10,7 +8,7 @@ def create_app():
     # Load the configuration
     app.config.from_object('config.Config')
 
-    # Initialize the database with the app
+    # Initialize extensions with the app
     db.init_app(app)
 
     # Register the blueprint

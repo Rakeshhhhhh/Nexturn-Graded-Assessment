@@ -1,23 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Book List</h2>
-<ul>
-    {% for book in books %}
-        <li>{{ book.title }} by {{ book.author }} ({{ book.published_year }}) - {{ book.genre }}
-            <form action="{{ url_for('main_routes.delete_book', id=book.id) }}" method="POST">
-                <button type="submit">Delete</button>
-            </form>
-        </li>
-    {% endfor %}
-</ul>
+<h2 class="mb-4">Book List</h2>
 
-<h3>Add a New Book</h3>
-<form action="{{ url_for('main_routes.add_book') }}" method="POST">
-    <input type="text" name="title" placeholder="Title" required>
-    <input type="text" name="author" placeholder="Author" required>
-    <input type="number" name="published_year" placeholder="Published Year" required>
-    <input type="text" name="genre" placeholder="Genre" required>
-    <button type="submit">Add Book</button>
+<!-- Display Books in Cards -->
+<div class="row">
+    {% for book in books %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <p class="card-text">
+                    <strong>Author:</strong> {{ book.author }}<br>
+                    <strong>Year:</strong> {{ book.published_year }}<br>
+                    <strong>Genre:</strong> {{ book.genre }}
+                </p>
+                <form action="{{ url_for('main_routes.delete_book', id=book.id) }}" method="POST">
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Add New Book Form -->
+<h3 class="mt-5">Add a New Book</h3>
+<form action="{{ url_for('main_routes.add_book') }}" method="POST" class="mb-5">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter the book title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" id="author" name="author" placeholder="Enter the author's name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="published_year" class="form-label">Published Year</label>
+        <input type="number" id="published_year" name="published_year" placeholder="Enter the published year" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="genre" class="form-label">Genre</label>
+        <input type="text" id="genre" name="genre" placeholder="Enter the genre" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Book</button>
 </form>
+
 {% endblock %}

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from .models import Book
-from . import db
+from app.models import Book
+from app.extensions import db  # Import db here
 
 main_routes = Blueprint('main_routes', __name__)
 

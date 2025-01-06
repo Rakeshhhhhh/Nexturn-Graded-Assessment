@@ -1,4 +1,4 @@
-from . import db  # This is valid because db is now initialized within create_app()
+from app.extensions import db
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
