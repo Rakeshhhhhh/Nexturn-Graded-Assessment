@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Book List</h2>
+<ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} ({{ book.published_year }}) - {{ book.genre }}
+            <form action="{{ url_for('main_routes.delete_book', id=book.id) }}" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Add a New Book</h3>
+<form action="{{ url_for('main_routes.add_book') }}" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="author" placeholder="Author" required>
+    <input type="number" name="published_year" placeholder="Published Year" required>
+    <input type="text" name="genre" placeholder="Genre" required>
+    <button type="submit">Add Book</button>
+</form>
+{% endblock %}

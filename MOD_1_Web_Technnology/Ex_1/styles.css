@@ -1,0 +1,19 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    max-width: 500px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.task.completed {
+    text-decoration: line-through;
+    color: gray;
+    background-color: #f8f9fa;
+}
+
+.task .btn {
+    margin-left: 5px;
+}

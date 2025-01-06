@@ -1,0 +1,18 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.card {
+    max-width: 800px;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
